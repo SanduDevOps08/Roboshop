@@ -15,7 +15,7 @@ yum install -y mongodb-org
 
 echo "Configuring the Mongodb"
 
-sed -i -e 's/127.0.0.0/0.0.0.0/' /etc/mogod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 
 echo "starting mongodb"
 
@@ -38,6 +38,6 @@ mongo < users.js
 
 echo "Restarting mongodb"
 
-systemctl start mongo
+systemctl start mongod
 
 echo "Execution completed"
