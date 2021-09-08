@@ -42,7 +42,7 @@ Status_Check $?
 
 
 Print "Downloading schema\t\t"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip\t\t" &>>/tmp/log
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/log
 Status_Check $?
 
 cd /tmp
