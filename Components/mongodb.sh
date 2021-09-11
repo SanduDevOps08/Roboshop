@@ -1,19 +1,6 @@
 #!/bin/bash
 
-Status_Check()
-{
-if [ $1 -eq 0 ]; then
-    echo -e "\e[32mSUCCESS\e[0m"
-else
-    echo -e "\e[31mFAILURE\e[0m"
-exit 2
-fi
-}
-
-Print()
-{
-echo -n -e "$1 \t-"
-}
+source Components/common.sh
 
 Print "Creating the repository\t\t"
 
@@ -26,42 +13,42 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mong
 Status_Check $?
 
 Print "Installing and starting the service"
-yum install -y mongodb-org &>>/tmp/log 
+yum install -y mongodb-org &>>$LOG
 Status_Check $?
 
 
 Print "Configuring the Mongodb\t\t"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>/tmp/log
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>$LOG
 Status_Check $?
 
 
 Print "starting mongodb\t\t"
 systemctl enable mongod
-systemctl start mongod &>>/tmp/log
+systemctl start mongod &>>$LOG
 Status_Check $?
 
 
 Print "Downloading schema\t\t"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/log
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG
 Status_Check $?
 
 cd /tmp
 
 Print "Extracting the zip files\t"
-unzip -o mongodb.zip &>>/tmp/log
+unzip -o mongodb.zip &>>$LOG
 Status_Check $?
 
 
 cd mongodb-main
 
 Print "Loading the schema\t\t"
-mongo < catalogue.js &>>/tmp/log
-mongo < users.js &>>/tmp/log
+mongo < catalogue.js &>>$LOG
+mongo < users.js &>>$LOG
 Status_Check $?
 
 
 Print "Restarting mongodb\t\t"
-systemctl start mongod &>>/tmp/log
+systemctl start mongod &>>$LOG
 Status_Check $?
 
 
