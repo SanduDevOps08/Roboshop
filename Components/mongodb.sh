@@ -10,7 +10,6 @@ baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo &>>$LOG
-Status_Check $?
 
 Print "Installing and starting the service"
 yum install -y mongodb-org &>>$LOG
