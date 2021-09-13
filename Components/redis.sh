@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 source Components/common.sh
 
 Print "Installing yum utils and downloading Redis repos\t\t\t"
@@ -19,10 +20,10 @@ Status_Check $?
 
 Print "Updating Redis IP address\t\t\t"
 
-if [ -f /etc/redis.conf]; then
+if [ -f /etc/redis.conf ]; then
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf &>>$LOG
 fi
-if [ -f /etc/redis.redis.conf]; then
+if [ -f /etc/redis.redis.conf ]; then
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.redis.conf &>>$LOG
 fi
 Status_Check $?
