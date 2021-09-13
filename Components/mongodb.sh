@@ -47,7 +47,7 @@ Status_Check $?
 
 
 Print "Restarting mongodb\t"
-systemctl restart mongod &>>$LOGcc
+systemctl restart mongod &>>$LOG
 Status_Check $?
 
 

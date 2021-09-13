@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source Components/common.sh
+#source Components/common.sh
 
 Status_Check()
 {
