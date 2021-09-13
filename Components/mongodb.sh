@@ -31,9 +31,9 @@ Print "Downloading schema\t"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG
 Status_Check $?
 
-cd /tmp
 
 Print "Extracting the zip files\t"
+cd /tmp
 unzip -o mongodb.zip &>>$LOG
 Status_Check $?
 
@@ -47,7 +47,7 @@ Status_Check $?
 
 
 Print "Restarting mongodb\t"
-systemctl start mongod &>>$LOGcc
+systemctl restart mongod &>>$LOGcc
 Status_Check $?
 
 
