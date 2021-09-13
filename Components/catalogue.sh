@@ -9,8 +9,8 @@ Status_Check $?
 
 Print "Adding the Roboshop user"
 
-id Roboshop &>>$LOG
-if [ $? -eq 0]; then
+id roboshop &>>$LOG
+if [ $? -eq 0 ]; then
  echo "The user already exists, hence skipping" &>>$LOG
 else 
 useradd -G wheel roboshop &>>$LOG
@@ -36,7 +36,7 @@ Status_Check $?
 
 Print "Update systemD service"
 
-sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" /home/Roboshop/catalogue/systemd.service
+sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" /home/roboshop/catalogue/systemd.service
 Status_Check $?
 
 Print "Setup systemD service"
