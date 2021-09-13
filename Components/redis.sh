@@ -19,10 +19,15 @@ Status_Check $?
 
 Print "Updating Redis IP address\t\t\t"
 
+if [ -f /etc/redis.conf]; then
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf &>>$LOG
+fi
+if [ -f /etc/redis.redis.conf]; then
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.redis.conf &>>$LOG
+fi
 Status_Check $?
 
 Print "Start Redis service\t\t"
 
-systemctl enable redis &>>$LOG && systemctl start redis &>>$LOG
+systemctl enable redis &>>$LOG && systemctl restart redis &>>$LOG
 Status_Check $?
