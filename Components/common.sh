@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source Components/common.sh
+#source Components/common.sh
 
 Status_Check()
 {
@@ -28,6 +28,7 @@ fi
 
 LOG=/tmp/Roboshop.log
 rm -f $LOG
+<<<<<<< HEAD
 
 
 ADD_APP_USER()
@@ -93,3 +94,5 @@ NODEJS()
     exit 0
     
 }
+=======
+>>>>>>> 0c227774b00f1ce19f9e8378bb558813633a94d9
