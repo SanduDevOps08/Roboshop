@@ -87,9 +87,8 @@ NODEJS()
     npm install --unsafe-perm &>>$LOG
     Status_Check $?
     chown roboshop:roboshop -R /home/roboshop
-    systemD.Setup()
-    exit 0
-    
+    systemD.Setup
+        
 }
 
 
