@@ -92,3 +92,47 @@ NODEJS()
     
 }
 
+
+JAVA() 
+{
+  Print "Installing Maven\t"
+  yum install maven -y &>>$LOG
+  Status_Check $?
+  ADD_APP_USER
+  DOWNLOAD
+  cd /home/roboshop/shipping
+  Print "Make Shipping Package\t"
+  mvn clean package &>>$LOG
+  Status_Check $?
+  Print "Rename Shipping Package"
+  mv target/shipping-1.0.jar shipping.jar &>>$LOG
+  Status_Check $?
+  chown roboshop:roboshop -R /home/roboshop
+  SystemdD_Setup
+}
+
+PYTHON() 
+{
+  Print "Install Python3\t\t"
+  yum install python36 gcc python3-devel -y &>>$LOG
+  Status_Check $?
+
+  ADD_APP_USER
+
+  DOWNLOAD
+
+  cd /home/roboshop/payment
+  Print "Install Python Dependencies"
+  pip3 install -r requirements.txt &>>$LOG
+  Status_Check $?
+
+  USERID=$(id -u roboshop)
+  GROUPID=$(id -g roboshop)
+
+  Print "Update RoboShop User in Config"
+  sed -i -e "/uid/ c uid=${USERID}" -e "/gid/ c gid=${GROUPID}"  /home/roboshop/payment/payment.ini &>>$LOG
+  Status_Check $?
+
+  SystemdD_Setup
+}
+
