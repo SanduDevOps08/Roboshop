@@ -50,7 +50,7 @@ DOWNLOAD()
     Status_Check $?  
     Print "Extracting the ${COMPONENT} files"
     cd /home/roboshop
-    rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv user-main ${COMPONENT}
+    rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv ${COMPONENT}-main ${COMPONENT}
     Status_Check $?
 }
 
