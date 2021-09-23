@@ -33,7 +33,7 @@ rm -f $LOG
 ADD_APP_USER()
 {
     
-    id Roboshop &>>$LOG
+    id roboshop &>>$LOG
     if [ $? -eq 0 ]; then
      echo "The user already exists, hence skipping" &>>$LOG
     else 
@@ -107,7 +107,7 @@ JAVA()
   mv target/shipping-1.0.jar shipping.jar &>>$LOG
   Status_Check $?
   chown roboshop:roboshop -R /home/roboshop
-  SystemdD_Setup
+  systemD.Setup
 }
 
 PYTHON() 
@@ -132,6 +132,6 @@ PYTHON()
   sed -i -e "/uid/ c uid=${USERID}" -e "/gid/ c gid=${GROUPID}"  /home/roboshop/payment/payment.ini &>>$LOG
   Status_Check $?
 
-  SystemdD_Setup
+  systemD.Setup
 }
 
