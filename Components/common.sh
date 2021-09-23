@@ -34,7 +34,7 @@ ADD_APP_USER()
 {
     
     id Roboshop &>>$LOG
-    if [ $? -eq 0]; then
+    if [ $? -eq 0 ]; then
      echo "The user already exists, hence skipping" &>>$LOG
     else 
     useradd -G wheel roboshop &>>$LOG
