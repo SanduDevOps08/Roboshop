@@ -24,9 +24,8 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
 Status_Check $?
 
 Print "Update Roboshop config file\t\t"
-<<<<<<< HEAD
 sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/' -e '/shipping/ s/localhost/shipping.roboshop.internal/' -e '/payment/ s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf  &>>$LOG
-=======
+
 sed -i -e '/catalogue/s/localhost/catalogue.roboshop.internal/' -e '/user/s/localhost/user.roboshop.internal/' -e '/cart/s/localhost/cart.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
 >>>>>>> ebf716d50af94fc5ff06ef9ac3a2ef6b41cbc94b
 Status_Check $?
