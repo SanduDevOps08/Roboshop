@@ -23,7 +23,7 @@ Status_Check $?
 
 Print "starting mongodb\t"
 systemctl enable mongod
-systemctl start mongod &>>$LOG
+systemctl restart mongod &>>$LOG
 Status_Check $?
 
 
@@ -40,15 +40,9 @@ Status_Check $?
 
 cd mongodb-main
 
-Print "Loading the schema\t"
-mongo < catalogue.js &>>$LOG
-mongo < users.js &>>$LOG
+Print "Loading Schema\t\t"
+for schema in catalogue users ; do
+  mongo < $schema.js &>>$LOG
+done
 Status_Check $?
 
-
-Print "Restarting mongodb\t"
-systemctl restart mongod &>>$LOG
-Status_Check $?
-
-
-exit 0
