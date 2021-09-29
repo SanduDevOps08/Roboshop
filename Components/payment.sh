@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source components/common.sh
+source Components/common.sh
 
 COMPONENT=payment
 ## PYTHON is a function from common.sh

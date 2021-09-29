@@ -33,7 +33,11 @@ rm -f $LOG
 ADD_APP_USER()
 {
     
+<<<<<<< HEAD
     id Roboshop &>>$LOG
+=======
+    id roboshop &>>$LOG
+>>>>>>> 310a81d26005bd79bbeb2dd7164c3aa106131dd6
     if [ $? -eq 0 ]; then
      echo "The user already exists, hence skipping" &>>$LOG
     else 
@@ -59,7 +63,7 @@ systemD.Setup()
 {
     Print "Update systemD service"
     
-    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
+      sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e  's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/'  /home/roboshop/${COMPONENT}/systemd.service
     Status_Check $?
     
     Print "Setup systemD service"
@@ -108,7 +112,7 @@ JAVA()
   mv target/shipping-1.0.jar shipping.jar &>>$LOG
   Status_Check $?
   chown roboshop:roboshop -R /home/roboshop
-  SystemdD_Setup
+  systemD.Setup
 }
 
 PYTHON() 
@@ -133,6 +137,6 @@ PYTHON()
   sed -i -e "/uid/ c uid=${USERID}" -e "/gid/ c gid=${GROUPID}"  /home/roboshop/payment/payment.ini &>>$LOG
   Status_Check $?
 
-  SystemdD_Setup
+  systemD.Setup
 }
 
