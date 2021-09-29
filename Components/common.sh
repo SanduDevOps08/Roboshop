@@ -34,10 +34,11 @@ ADD_APP_USER()
 {
     
     id Roboshop &>>$LOG
-    if [ $? -eq 0]; then
+    if [ $? -eq 0 ]; then
      echo "The user already exists, hence skipping" &>>$LOG
     else 
     useradd -G wheel roboshop &>>$LOG
+    Print "roboshop user is added successfully"
     fi
     Status_Check $?   
  
@@ -50,7 +51,7 @@ DOWNLOAD()
     Status_Check $?  
     Print "Extracting the ${COMPONENT} files"
     cd /home/roboshop
-    rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv user-main ${COMPONENT}
+    rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv ${COMPONENT}-main ${COMPONENT}
     Status_Check $?
 }
 
